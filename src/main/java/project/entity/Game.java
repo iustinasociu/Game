@@ -31,7 +31,7 @@ public class Game {
     @Enumerated(EnumType.STRING)
     private CrossPlatform crossPlatform;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinTable(
             name = "game_creator",
             joinColumns = @JoinColumn(name = "game_id"),
