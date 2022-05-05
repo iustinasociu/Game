@@ -12,7 +12,6 @@ public class BodyBuilderServiceImpl implements BodyBuilderService {
     @Autowired
     RandomTokenService randomTokenService;
 
-
     @Override
     public String emailBody(MyUser myUser) {
         return "Hello," +

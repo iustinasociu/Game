@@ -15,22 +15,22 @@ public class CreatorController {
     CreatorRepository creatorRepository;
 
     @PostMapping(value = "/creator")
-    public void saveCreator(@RequestBody Creator creator){
+    public void saveCreator(@RequestBody Creator creator) {
         creatorRepository.save(creator);
     }
 
     @GetMapping(value = "/creator/all")
-    public List<Creator> getAllCreators(){
+    public List<Creator> getAllCreators() {
         return creatorRepository.findAll();
     }
 
     @GetMapping(value = "/creator/{id}")
-    public Optional<Creator> getCreatorById(@PathVariable Long id){
+    public Optional<Creator> getCreatorById(@PathVariable Long id) {
         return creatorRepository.findById(id);
     }
 
     @DeleteMapping(value = "/creator/{id}")
-    public void deleteCreator(@PathVariable Long id){
+    public void deleteCreator(@PathVariable Long id) {
         creatorRepository.deleteById(id);
     }
 }

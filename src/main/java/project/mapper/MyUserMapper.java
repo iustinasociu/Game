@@ -15,5 +15,4 @@ public class MyUserMapper {
         return new MyUserDTO(myUser.getId(), myUser.getUsername(), myUser.getFullName(),
                 myUser.getEmail());
     }
-
 }

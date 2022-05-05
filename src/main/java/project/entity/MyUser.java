@@ -38,8 +38,8 @@ public class MyUser implements UserDetails {
 
     private boolean credentialsNonExpired;
 
-    @Column(name = "enabled", nullable = false)
-    private boolean enabled;
+    @Column(nullable = false)
+    private boolean enabled = false;
 
     @Column(nullable = false, length = 30)
     private String fullName;
@@ -47,12 +47,11 @@ public class MyUser implements UserDetails {
     @Column(nullable = false, length = 30, unique = true)
     private String email;
 
-    @Column
+    @Column(nullable = false)
     private String randomToken;
 
     @Transient
     private String randomTokenEmail;
-
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",
@@ -100,5 +99,4 @@ public class MyUser implements UserDetails {
         return getRoles().stream().map(role -> new SimpleGrantedAuthority("ROLE_" + role.getName()))
                 .collect(Collectors.toList());
     }
-
 }

@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/index","/login", "/register","/activation/**","/activation-success","/game","/game/all","/game/{id}","/creator","/creator/all","/creator/{id}","/creator/{id}").permitAll()
+                .antMatchers("/login", "/register", "/activation/**", "/activation-success", "/game/save", "/game/all", "/game/{id}").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -44,7 +44,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutSuccessUrl("/login");
-
     }
 
     @Bean

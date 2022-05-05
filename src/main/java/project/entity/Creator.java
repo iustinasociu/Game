@@ -25,6 +25,6 @@ public class Creator {
 
     @ToString.Exclude
     @JsonIgnore
-    @OneToMany(cascade=CascadeType.ALL, mappedBy = "creators")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "creators")
     private Set<Game> games;
 }

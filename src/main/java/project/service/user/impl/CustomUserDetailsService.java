@@ -1,6 +1,5 @@
 package project.service.user.impl;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -45,6 +44,5 @@ public class CustomUserDetailsService implements UserDetailsService {
         return new User(myUser.getUsername(), myUser.getPassword(),
                 myUser.isEnabled(), myUser.isAccountNonExpired(),myUser.isCredentialsNonExpired(), myUser.isAccountNonLocked(), authorities);
     }
-
 }
 

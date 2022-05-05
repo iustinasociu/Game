@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import project.entity.Role;
 
+import javax.persistence.Column;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,10 +32,11 @@ public class MyUserDTO {
     private boolean credentialsNonExpired;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private boolean enabled;
+    private boolean enabled = false;
 
     private String fullName;
 
+    @Column(unique = true)
     private String email;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)

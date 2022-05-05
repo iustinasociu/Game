@@ -14,5 +14,4 @@ public class RandomTokenServiceImpl implements RandomTokenService {
         UUID nameBasedUUID = Generators.nameBasedGenerator().generate(user.getUsername());
         return nameBasedUUID.toString();
     }
-
 }
