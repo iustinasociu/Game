@@ -19,7 +19,6 @@ public class ActivationController {
 
     @GetMapping(value = "/activation/{randomToken}")
     public String registerForm(@PathVariable String randomToken, Model model) {
-        MyUser myUser = new MyUser();
         model.addAttribute("user", userService.findUserByRandomToken(randomToken));
         return "activation";
     }

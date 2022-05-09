@@ -1,6 +1,7 @@
 package project.entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @Setter
 @Getter
 @ToString
+@NoArgsConstructor
 public class Game {
 
     @Id
@@ -38,4 +40,13 @@ public class Game {
             inverseJoinColumns = @JoinColumn(name = "creator_id"))
     private Creator creators;
 
+    public Game(String name, String forAge, Boolean multiplayer, Boolean singlePlayer, GameGenre gameGenre, CrossPlatform crossPlatform, Creator creators) {
+        this.name = name;
+        this.forAge = forAge;
+        this.multiplayer = multiplayer;
+        this.singlePlayer = singlePlayer;
+        this.gameGenre = gameGenre;
+        this.crossPlatform = crossPlatform;
+        this.creators = creators;
+    }
 }

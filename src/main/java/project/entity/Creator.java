@@ -2,6 +2,7 @@ package project.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -12,6 +13,7 @@ import java.util.Set;
 @Getter
 @Entity
 @ToString
+@NoArgsConstructor
 public class Creator {
 
     @Id
@@ -27,4 +29,10 @@ public class Creator {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "creators")
     private Set<Game> games;
+
+    public Creator(String name, String nationality, Set<Game> games) {
+        this.name = name;
+        this.nationality = nationality;
+        this.games = games;
+    }
 }

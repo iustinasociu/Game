@@ -4,36 +4,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import project.entity.Creator;
 import project.entity.Game;
+import project.mapper.GameMapper;
 import project.repository.CreatorRepository;
 import project.repository.GameRepository;
+import project.rest.model.GameDTO;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 public class GameController {
 
     @Autowired
-    private GameRepository gameRepository;
+    GameRepository gameRepository;
 
     @Autowired
-    private CreatorRepository creatorRepository;
+    CreatorRepository creatorRepository;
 
     @PostMapping(value = "/game/save")
-    public void saveGame(@RequestBody Game game) {
+    public void saveGame(@RequestBody GameDTO gameDTO) {
 
-        final Creator creatorFound = creatorRepository.findByName(game.getCreators().getName());
+        final Creator creatorFound = creatorRepository.findByName(gameDTO.getCreators().getName());
         if (creatorFound != null) {
-            game.setCreators(creatorFound);
+            gameDTO.setCreators(creatorFound);
         } else {
-            game.setCreators(creatorRepository.save(game.getCreators()));
+            gameDTO.setCreators(creatorRepository.save(gameDTO.getCreators()));
         }
-        gameRepository.save(game);
+        GameMapper.fromEntityToDTO(gameRepository.save(GameMapper.fromDTOToEntity(gameDTO)));
     }
 
     @GetMapping(value = "/game/all")
-    public List<Game> getAllGames() {
-        return gameRepository.findAll();
+    public List<GameDTO> getAllGames() {
+        return gameRepository.findAll().stream().map(GameMapper::fromEntityToDTO).collect(Collectors.toList());
     }
 
     @GetMapping(value = "/game/{id}")

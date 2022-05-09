@@ -3,10 +3,13 @@ package project.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import project.entity.Creator;
+import project.mapper.CreatorMapper;
 import project.repository.CreatorRepository;
+import project.rest.model.CreatorDTO;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 public class CreatorController {
@@ -15,13 +18,13 @@ public class CreatorController {
     CreatorRepository creatorRepository;
 
     @PostMapping(value = "/creator")
-    public void saveCreator(@RequestBody Creator creator) {
-        creatorRepository.save(creator);
+    public void saveCreator(@RequestBody CreatorDTO creatorDTO) {
+        creatorRepository.save(CreatorMapper.fromDTOToEntity(creatorDTO));
     }
 
     @GetMapping(value = "/creator/all")
-    public List<Creator> getAllCreators() {
-        return creatorRepository.findAll();
+    public List<CreatorDTO> getAllCreators() {
+        return creatorRepository.findAll().stream().map(CreatorMapper::fromEntityToDTO).collect(Collectors.toList());
     }
 
     @GetMapping(value = "/creator/{id}")

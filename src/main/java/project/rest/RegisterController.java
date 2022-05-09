@@ -38,7 +38,7 @@ public class RegisterController {
 
     @PostMapping(value = "/register")
     public String registerUser(@ModelAttribute("user") @RequestBody MyUserDTO myUserDTO) throws EmailAlreadyExists {
-        if (myUserDTO.getPassword().equalsIgnoreCase(myUserDTO.getPasswordConfirm())) {
+        if (myUserDTO.getPassword().equals(myUserDTO.getPasswordConfirm())) {
             myUserDTO.setRoles(Set.of(new Role("ROLE_USER")));
 
             if (emailExists(myUserDTO.getEmail())) {
